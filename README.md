@@ -1,6 +1,6 @@
-# clean-ai-tone · 中文交付件终审门禁（跨系统 Skill）
+﻿# clean-ai-tone · 中文交付件终审门禁（跨系统 Skill）
 
-标准 skill 包，可安装到任意支持 SKILL.md 约定的系统：Claude Code、Cursor、AIS 或其他 Agent 平台。
+标准 skill 包，可安装到任意支持 SKILL.md 约定的系统：Claude Code、Cursor 或其他 Agent 平台。
 用于中文专业文稿的去 AI 味终检与确认后改稿：清洗说教腔、套话、修辞符号与空泛评价，保留事实口径与可核对数值。
 
 ## 两种用法
@@ -30,13 +30,13 @@ Windows PowerShell：
 Copy-Item -Recurse clean-ai-tone .cursor\skills\clean-ai-tone
 ```
 
-### AIS 或其他平台
+### 其他平台
 
 放入平台对应的 skills 目录即可。本包仅依赖 `SKILL.md` + `references/`，无脚本、无外部依赖。
 
 也可以把本目录发布为独立 Git 仓库，各系统 `git clone` 使用，便于统一升级。
 
-## 目录结构（v5.15，49 文件）
+## 目录结构（v5.17）
 
 ```
 clean-ai-tone/
@@ -44,7 +44,7 @@ clean-ai-tone/
 ├── README.md               # 本文件：安装、目录、抽取纪律
 ├── NOTICE                  # 第三方致谢与引用归因（8 来源，使用请保留）
 ├── LICENSE                 # MIT
-├── CHANGELOG.md            # 变更记录（v1.0 → v5.15 全程）
+├── CHANGELOG.md            # 变更记录（v1.0 → v5.17 全程）
 ├── references/             # 规则与流程（含 v5.13 语义保真 H 节）
 │   ├── gate-checklist.md       # 审稿门禁 D1–D8、分级、场景路由、放行规则
 │   ├── gate-report-template.md # 审稿报告模板（含人工确认区）

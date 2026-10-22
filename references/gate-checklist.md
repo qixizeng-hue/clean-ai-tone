@@ -13,7 +13,7 @@
 
 ### D1 文风（AI 腔与套话）
 
-按 clean 模式标准执行：`checklist.md` A 节 H1–H29 + `phrase-blacklist.md` §1–7、§9–12、§18–23 + `delivery-artifact-mode.md` + `production-path.md`（PPT/客户交付必读）。
+按 clean 模式标准执行：`checklist.md` A 节 H1–H31 + `phrase-blacklist.md` §1–7、§9–12、§18–24 + `delivery-artifact-mode.md` + `production-path.md`（PPT/客户交付必读）+ **`ppt-deck-isomorphism.md`（H31，3–5 页总部/客户 PPT 必读）**。
 判级：命中 H1–H8 或禁用词，密集（每千字 >3 处）为 Blocker；零星为 Warning。  
 **H9 记忆负担计数**：版式「栏」、三口径/五问/六项等记忆压缩未改内容指称 → 对外请示稿 **Blocker**，内部草稿 Warning；误删「请指示三件事」等功能计数 → **Blocker**。  
 **H18–H19 / H25**：对外 PPT 名词堆叠、翻译风框式、欧化长定语/空转动词/假对称半页 → **Blocker**；零星 Warning。  

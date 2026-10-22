@@ -1,18 +1,18 @@
 ---
 name: clean-ai-tone
 slug: clean-ai-tone
-version: 5.15.0
+version: 5.17.1
 displayName: 公文或专业报告去AI腔
-summary: 中文专业报告终审门禁与去 AI 腔改稿：GATE 审稿→人工确认→FIX 改稿，内置 51 条规则 Python 扫描脚本，可 CI 集成
-tags: [写作, 文风, 终审, 去AI味, 公文, 研报]
+summary: 中文专业报告终审门禁与去AI腔改稿：GATE审稿→人工确认→FIX改稿，51+条规则Python扫描脚本，可CI集成
+tags: [写作, 文风, 终审, 去AI味, 公文, 研报, PPT]
 license: MIT
-homepage: https://xiaping.coze.com/skills/6692b120-968c-420b-a7e5-adf2b9636c39
+homepage: https://github.com/qixizeng-hue/clean-ai-tone
 description: >-
   中文交付件终审门禁与去 AI 腔改稿（clean-ai-tone）：先审稿（D1–D8），确认后改稿；也可直通清洗说教腔、
   电报体、翻译风、缩略语墙、对话粘贴残留。含脚本扫描与 H18–H29：中文定稿句先于出图、句库组句不造句、
   翻译腔句式硬检（命中打回）、AI 对话残留与句式结构检测（否定排比/三段式/同义词循环/虚假范围）、
-  禁止多模型互洗/来回翻译当主路径。当用户要求去 AI 味、去 AI 腔、文本太像 AI 写的、像机器人写的、
-  空洞啰嗦、翻译腔、审稿、终审、门禁、定稿前终检时使用。面向金融、咨询、研报等专业报告类文档的公共核，不含特定机构口径（机构口径由项目覆盖层提供）。
+  PPT/总部汇报段末同构与「不是而是」限额（H31）、禁止多模型互洗/来回翻译当主路径。当用户要求去 AI 味、去 AI 腔、文本太像 AI 写的、像机器人写的、
+  空洞啰嗦、翻译腔、审稿、终审、门禁、定稿前终检、PPT三连同构、需要总部给的是 时使用。面向金融、咨询、研报等专业报告类文档的公共核，不含特定机构口径（机构口径由项目覆盖层提供）。
 ---
 
 # clean-ai-tone · 公文与专业报告去AI腔（公共核）
@@ -25,7 +25,7 @@ description: >-
 ## 第一次使用看这里（3 步最小路径）
 
 1. **直接说需求**：把文稿交给 Agent，说「去 AI 腔」或「帮我终审」。Agent 按下方「模式选择」自动走 GATE 或 clean 直通，不需要你先读任何 references
-2. **想快速机扫**：`python3 tools/scan_ai_tone.py --base <稿件目录>`（开箱即扫 51 规则）；日常文案只要硬伤清单，加 `--lite`（仅 HARD 级，少噪音）
+2. **想快速机扫**：`python3 tools/scan_ai_tone.py --base <稿件目录>`（开箱即扫约 56 规则）；日常文案只要硬伤清单，加 `--lite`（仅 HARD 级，少噪音）
 3. **要深改再读规则**：最常用三个文件 `references/checklist.md`、`references/phrase-blacklist.md`、`references/rewrite-patterns.md`；其余按「参考文件导航」按需取用
 
 ## 何时启用
@@ -78,16 +78,17 @@ description: >-
 用户直接要求清洗/润色且无门禁诉求时，无需出审稿报告，按以下顺序执行：
 
 1. **冻结事实与数字**：不得为润色改口径；先摘出全部数值、指标名、结论锚点，并对数值陈述两两核对逻辑一致性（总数×比率、占比加总、口径互斥等）——发现原文自相矛盾时不改数、不圆场、不新增断言，在交付稿矛盾处加`【待确认：…口径需复核】`批注并列入报告
-2. **扫 H1–H29**（H30 见第 8 步）：`references/checklist.md` A/A2 + `experience/MULTI_ROUND_CLEAR_SCAN.md`（含 H18–H22 交付物、H23–H27 成稿路径、H28–H29 残留与句式）；能跑 Python 的环境先执行 `python3 tools/scan_ai_tone.py --base <稿件目录>`（51 规则，HARD/SOFT 分级；日常文案只要硬伤清单可加 `--lite`）
-3. **扫禁用词与句式**：`phrase-blacklist.md` §1–7、§9–12、§18–23（含翻译腔句式硬检、对话粘贴残留）
+2. **扫 H1–H29**（H30/H31 见第 8–9 步）：`references/checklist.md` A/A2 + `experience/MULTI_ROUND_CLEAR_SCAN.md`（含 H18–H22 交付物、H23–H27 成稿路径、H28–H29 残留与句式）；能跑 Python 的环境先执行 `python3 tools/scan_ai_tone.py --base <稿件目录>`（约 56 规则，HARD/SOFT；日常文案可加 `--lite`）
+3. **扫禁用词与句式**：`phrase-blacklist.md` §1–7、§9–12、§18–24（含翻译腔句式硬检、对话粘贴残留、**H31 PPT 同构**）
 4. **PPT/客户稿**：读 `delivery-artifact-mode.md` + `production-path.md`；无定稿句则停，不造句灌版
 5. **扫格式与符号**：`checklist.md` C 节
 6. **结构检查**：F 节；PPT 再扫 G 节（单页限额、假对称）
 7. **可读性**：`readability-checklist.md` R1/R3/R5
 8. **H30 呼吸感**（HARD=0 后仍像 AI／用户说没呼吸感时必做）：读 `references/zh-breath-rules.md`——「X 的是 Y」密度、连续「不是 A 是 B」、同构段首、「按…看」、短词翻译腔、AI 开头；事实数字不动
-9. **抽读**：PPT 像人对客户讲；结论≤2 句；建议只写动作；公众号长文再听一遍是否「工整得喘不过气」
-10. **复核数字**：与冻结表一致；H21 只补含义不改数
-11. **禁止**把多模型接力润色/来回翻译当作放行条件
+9. **H31 PPT 同构**（3–5 页总部/客户汇报必做）：读 `references/ppt-deck-isomorphism.md`——段末「需要总部给的是」三连、不是而是≤2、产品起句错开、合并改稿后复扫段末、口头括号并入问句；事实数字不动
+10. **抽读**：PPT 像人对客户讲；结论≤2 句；建议只写动作；公众号长文再听一遍是否「工整得喘不过气」
+11. **复核数字**：与冻结表一致；H21 只补含义不改数；窄口径勿误用窄 B
+12. **禁止**把多模型接力润色/来回翻译当作放行条件
 
 ## 四禁
 
@@ -124,8 +125,9 @@ description: >-
 | `references/production-path.md` | **H23–H27 成稿路径**：先人话再落格、句库、句式硬检、分轨、单页限额 |
 | `references/style-profile.md` | 文风分层（P0/P1/P2）或交付件书面体细则 |
 | `references/sentence-bank/` | PPT/请示稿组句：工作流、已批页、词条、术语表、冻结数模板 |
-| `experience/MULTI_ROUND_CLEAR_SCAN.md` | 多轮清洗复扫顺序（H9–H30）与改后复扫要求 |
+| `experience/MULTI_ROUND_CLEAR_SCAN.md` | 多轮清洗复扫顺序（H9–H31）与改后复扫要求 |
 | `references/zh-breath-rules.md` | **H30 呼吸感**：HARD 过关后仍像 AI；「X 的是 Y」、同构段首、翻译短词 |
+| `references/ppt-deck-isomorphism.md` | **H31 PPT/汇报同构**：段末资源诉求三连、不是而是限额、产品起句、跳接过渡 |
 
 不要一次读全部参考文件。PPT/客户稿必加读：`delivery-artifact-mode.md` + `production-path.md`。HARD=0 仍像 AI 时加读：`zh-breath-rules.md`。
 
@@ -139,7 +141,7 @@ description: >-
 
 - Claude Code / 通用：复制本目录到 `~/.claude/skills/clean-ai-tone/`（个人级）或项目 `.claude/skills/`
 - Cursor：复制到 `.cursor/skills/clean-ai-tone/`
-- AIS 或其他 Agent 平台：放入对应 skills 目录即可识别（仅需 SKILL.md 与 references/；tools/ 为可选增强）
+- 其他 Agent 平台：放入对应 skills 目录即可识别（仅需 SKILL.md 与 references/；tools/ 为可选增强）
 
 详见 `README.md`。
 
@@ -168,11 +170,11 @@ description: >-
 **不建议当主方案**：来回翻译、多模型接力润色、只加禁词不改「谁先写中文」。
 
 用户投喂执行指令清单时：按 FIX，数值零变动。  
-闭集后跑 **`experience/MULTI_ROUND_CLEAR_SCAN.md`（H9–H30）** 并记迭代日志；改稿完成过 `references/checklist.md` H 节（语义保真与改后核对 17 项）。HARD=0 仍像 AI 时加跑 H30。
+闭集后跑 **`experience/MULTI_ROUND_CLEAR_SCAN.md`（H9–H31）** 并记迭代日志；改稿完成过 `references/checklist.md` H 节（语义保真与改后核对 17 项）。HARD=0 仍像 AI 时加跑 H30；**PPT/总部汇报再加 H31**。
 
 ## 变更记录
 
-当前版本：**v5.16**（2026-10-21：**H30 中文呼吸感**——HARD 过关后仍像 AI 时读 `references/zh-breath-rules.md`；clean 直通第 8 步；复扫扩至 H9–H30。其上 **v5.15.1** 破折号数字间豁免；**v5.15** 最小路径与 `--lite`）。完整演进见 `CHANGELOG.md`。
+当前版本：**v5.17**（2026-10-21：**H31 PPT/总部汇报同构**——`ppt-deck-isomorphism.md`；段末「需要总部给的是」HARD；不是而是简式/正反同拍/对外禁漏/口头括号 SOFT；复扫扩至 H9–H31。其上 **v5.16** H30 呼吸感；**v5.15.1** 破折号数字间豁免）。完整演进见 `CHANGELOG.md`。
 
 ## 本包附加（扣子）
 

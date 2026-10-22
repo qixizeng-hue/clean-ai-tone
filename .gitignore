@@ -1,0 +1,17 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*~
+
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local-only overlays (never commit real institution profiles)
+project/STYLE_PROFILE.md
+project/scan_config.json
