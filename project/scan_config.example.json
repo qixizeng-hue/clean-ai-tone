@@ -1,0 +1,12 @@
+{
+  "articles": [
+    "*.md",
+    "*.html",
+    "*.txt"
+  ],
+  "svg_patterns": [
+    "*.svg"
+  ],
+  "scripts": [],
+  "_rules_note": "不要在本文件写 rules 字段：留空即使用 scan_ai_tone.py 内置全量规则（随版本更新）。仅当确需自定义子集时才加 rules。"
+}
